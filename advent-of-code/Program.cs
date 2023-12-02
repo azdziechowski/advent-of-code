@@ -1,2 +1,1 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿new advent_of_code.challenges._2023._02.Challenge().RunPart2();

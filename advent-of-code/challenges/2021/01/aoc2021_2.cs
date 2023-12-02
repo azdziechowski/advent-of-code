@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace kattis
+namespace advent_of_code.challenges._2021._01
 {
     public class aoc2021_2
     {
