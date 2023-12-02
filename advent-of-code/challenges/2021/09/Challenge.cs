@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace kattis
+namespace advent_of_code.challenges._2021._09
 {
-    public class aoc2021_9
+    public class Challenge : ChallengeBase
     {
         public static void Run()
         {
@@ -107,6 +107,15 @@ namespace kattis
 
             public List<Point> Neighbors { get; set; } = new List<Point>();
         }
-        
+
+        public override void RunPart1()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void RunPart2()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace kattis
+namespace advent_of_code.challenges._2021._08
 {
-    public class aoc2021_8
+    public class Challenge : ChallengeBase
     {
         
         public static Dictionary<int, string> dictionary = new Dictionary<int, string>()
@@ -112,6 +112,16 @@ namespace kattis
 
             var stringResult = new string(resultDigits.Select(digit => digit.ToString().Single()).ToArray());
             return long.Parse(stringResult);
+        }
+
+        public override void RunPart1()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void RunPart2()
+        {
+            throw new NotImplementedException();
         }
     }
 }

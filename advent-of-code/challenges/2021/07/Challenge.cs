@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualBasic.CompilerServices;
 
-namespace kattis
+namespace advent_of_code.challenges._2021._07
 {
-    public class aoc2021_7
+    public class Challenge : ChallengeBase
     {
         public static void Run()
         {
@@ -59,6 +58,16 @@ namespace kattis
             Console.WriteLine("Distance: " + minDistance);
 
             
+        }
+
+        public override void RunPart1()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void RunPart2()
+        {
+            throw new NotImplementedException();
         }
     }
 }

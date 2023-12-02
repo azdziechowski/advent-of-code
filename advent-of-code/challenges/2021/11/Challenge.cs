@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
-namespace kattis
+namespace advent_of_code.challenges._2021._11
 {
-    public class aoc2021_11
+    public class Challenge : ChallengeBase
     {
         private static Dictionary<(int, int), Octopus> octopi = new Dictionary<(int, int), Octopus>();
 
@@ -143,6 +143,16 @@ namespace kattis
                 
                 return flashes + 1;
             }
+        }
+
+        public override void RunPart1()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void RunPart2()
+        {
+            throw new NotImplementedException();
         }
     }
 }

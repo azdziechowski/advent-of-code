@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace advent_of_code.challenges._2021._01
 {
-    public class aoc2021_2
+    public class Challenge : ChallengeBase
     {
         public static void Run()
         {
@@ -36,6 +36,16 @@ namespace advent_of_code.challenges._2021._01
             Console.WriteLine($"ver: {ver}, hor: {hor}, mult: {ver * hor}");
         
         
+        }
+
+        public override void RunPart1()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void RunPart2()
+        {
+            throw new NotImplementedException();
         }
     }
 }

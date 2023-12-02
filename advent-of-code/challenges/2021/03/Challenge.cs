@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace kattis
+namespace advent_of_code.challenges._2021._03
 {
-    public class aoc2021_3
+    public class Challenge : ChallengeBase
     {
         public static void Run()
         {
@@ -99,6 +99,16 @@ namespace kattis
             
             Console.WriteLine(val1 * val2);
             
+        }
+
+        public override void RunPart1()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void RunPart2()
+        {
+            throw new NotImplementedException();
         }
     }
 }

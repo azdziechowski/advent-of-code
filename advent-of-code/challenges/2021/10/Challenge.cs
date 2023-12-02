@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace kattis
+namespace advent_of_code.challenges._2021._10
 {
-    public class aoc2021_10
+    public class Challenge : ChallengeBase
     {
         private static Dictionary<char, int> scores = new Dictionary<char, int>()
             { 
@@ -144,6 +144,16 @@ namespace kattis
                    tagLeft == '[' && tagRight == ']' ||
                    tagLeft == '<' && tagRight == '>' ||
                    tagLeft == '{' && tagRight == '}';
+        }
+
+        public override void RunPart1()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void RunPart2()
+        {
+            throw new NotImplementedException();
         }
     }
 }

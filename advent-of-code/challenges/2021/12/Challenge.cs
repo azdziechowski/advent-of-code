@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace kattis
+namespace advent_of_code.challenges._2021._12
 {
-    public class aoc2021_12
+    public class Challenge : ChallengeBase
     {
         private static Dictionary<string, Node> nodes = new();
 
@@ -130,6 +130,16 @@ namespace kattis
                     _ => throw new ArgumentOutOfRangeException(nameof(name), name, null)
                 };
             }
+        }
+
+        public override void RunPart1()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void RunPart2()
+        {
+            throw new NotImplementedException();
         }
     }
 }

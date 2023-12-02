@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
-namespace kattis
+namespace advent_of_code.challenges._2021._13
 {
-    public class aoc2021_13
+    public class Challenge : ChallengeBase
     {
         private static List<int> countAtRow = new List<int>();
 
@@ -176,6 +175,16 @@ namespace kattis
             }
 
             return result.Select(r => r.ToList()).ToList();
+        }
+
+        public override void RunPart1()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void RunPart2()
+        {
+            throw new NotImplementedException();
         }
     }
 }
