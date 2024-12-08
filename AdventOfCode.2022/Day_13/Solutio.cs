@@ -1,10 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace AoC.Day_13;
+namespace AdventOfCode._2022.Day_13;
 
 public class Solutio
 {

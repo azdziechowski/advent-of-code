@@ -1,4 +1,7 @@
+using System;
+using System.Linq;
 using System.Text.RegularExpressions;
+using NUnit.Framework;
 
 namespace AdventOfCode._2024;
 

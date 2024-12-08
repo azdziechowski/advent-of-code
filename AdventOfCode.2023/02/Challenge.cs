@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace advent_of_code.challenges._2023._02;
+namespace advent_of_code._02;
 
 public class Challenge : ChallengeBase
 {

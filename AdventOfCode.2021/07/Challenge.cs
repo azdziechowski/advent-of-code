@@ -1,6 +1,8 @@
-using advent_of_code.challenges;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace AdventOfCode._2021._2021._07
+namespace AdventOfCode._2021._07
 {
     public class Challenge : ChallengeBase
     {

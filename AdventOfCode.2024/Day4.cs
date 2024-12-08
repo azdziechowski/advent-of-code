@@ -1,3 +1,7 @@
+using System;
+using System.Linq;
+using NUnit.Framework;
+
 namespace AdventOfCode._2024;
 
 [TestFixture]

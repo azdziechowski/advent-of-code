@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace AoC.Day_11.Part2;
+namespace AdventOfCode._2022.Day_11;
 
 public class Wrapper
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace AoC.Day_15;
+namespace AdventOfCode._2022.Day_15;
 
 // attempt2
 public class Solution2

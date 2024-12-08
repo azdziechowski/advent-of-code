@@ -1,7 +1,7 @@
 using System.IO;
 using System.Linq;
 
-namespace advent_of_code.challenges;
+namespace advent_of_code;
 
 public abstract class ChallengeBase
 {

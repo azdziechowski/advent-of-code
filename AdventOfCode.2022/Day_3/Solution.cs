@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace AoC.Day_3;
+namespace AdventOfCode._2022.Day_3;
 
 public class Solution
 {
