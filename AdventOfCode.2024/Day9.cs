@@ -61,14 +61,6 @@ public class Day9
             .Select((value, index) => value * index)
             .Aggregate<int, long>(0, (current, x) => current + x);
 
-        foreach (var c in arr)
-        {
-            Console.Write(c);
-        }
-
-        Console.WriteLine();
-
-
         return result.ToString();
 
     }
