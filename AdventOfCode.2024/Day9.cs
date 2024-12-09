@@ -75,6 +75,61 @@ public class Day9
 
     private static string Solution2(string input)
     {
-        return "";
+        var arr = input
+            .Select(c => c - '0')
+            .SelectMany((value, index) => index % 2 == 1 
+                ? Enumerable.Repeat(-1, value).ToArray() // empty space 
+                : Enumerable.Repeat(index / 2, value).ToArray())
+            .ToList();
+
+        var blockCount = 0;
+        var emptySpaces = new List<(int, int)>();
+        for (var i = 0; i < input.Length; i++)
+        {
+            if (i % 2 == 0)
+            {
+                blockCount += input[i] - '0';
+                continue;
+            }
+            emptySpaces.Add((blockCount, input[i] - '0'));
+            blockCount += input[i] - '0';
+        }
+
+        var currentFile = arr.Last();
+
+        while (currentFile > 0)
+        {
+            var fileStart = arr.IndexOf(currentFile);
+            var fileEnd = arr.LastIndexOf(currentFile);
+            var fileSize = fileEnd - fileStart + 1;
+            for (var index = 0; index < emptySpaces.Count; index++)
+            {
+                var emptySpace = emptySpaces[index];
+                if (emptySpace.Item1 >= fileStart) break; // empty space needs to be to the left of the file block
+                if (emptySpace.Item2 >= fileSize)
+                {
+                    var idx = emptySpace.Item1;
+                    for (int i = fileStart; i <= fileEnd; i++)
+                    {
+                        arr[idx++] = arr[i];
+                        arr[i] = -1;
+                    }
+                    
+                    emptySpace.Item1 += fileSize;
+                    emptySpace.Item2 -= fileSize;
+                    emptySpaces[index] = emptySpace;
+        
+                    break;
+                }
+            }
+        
+            currentFile--;
+        }
+        
+        var result = arr
+            .Select((value, index) => value != -1 ? value * index : 0)
+            .Aggregate<int, long>(0, (current, i) => current + i);
+        
+        return result.ToString();
     }
 }
