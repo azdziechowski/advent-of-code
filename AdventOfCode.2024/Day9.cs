@@ -75,7 +75,7 @@ public class Day9
             .ToList();
 
         var blockCount = 0;
-        var emptySpaces = new List<(int, int)>();
+        var emptySpaces = new List<(int blockStart, int blockSize)>();
         for (var i = 0; i < input.Length; i++)
         {
             if (i % 2 == 0)
@@ -97,18 +97,18 @@ public class Day9
             for (var index = 0; index < emptySpaces.Count; index++)
             {
                 var emptySpace = emptySpaces[index];
-                if (emptySpace.Item1 >= fileStart) break; // empty space needs to be to the left of the file block
-                if (emptySpace.Item2 >= fileSize)
+                if (emptySpace.blockStart >= fileStart) break; // empty space needs to be to the left of the file block
+                if (emptySpace.blockSize >= fileSize)
                 {
-                    var idx = emptySpace.Item1;
+                    var idx = emptySpace.blockStart;
                     for (int i = fileStart; i <= fileEnd; i++)
                     {
                         arr[idx++] = arr[i];
                         arr[i] = -1;
                     }
                     
-                    emptySpace.Item1 += fileSize;
-                    emptySpace.Item2 -= fileSize;
+                    emptySpace.blockStart += fileSize;
+                    emptySpace.blockSize -= fileSize;
                     emptySpaces[index] = emptySpace;
         
                     break;
