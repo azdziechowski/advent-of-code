@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace AdventOfCode._2024;
 
 [TestFixture]
-public class Day7
+public class Day07
 {
     private const string TestInput =
         """

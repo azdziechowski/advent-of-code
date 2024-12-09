@@ -1,7 +1,7 @@
 namespace AdventOfCode._2024;
 
 [TestFixture]
-public class Day9
+public class Day09
 {
     private const string TestInput =
         """
