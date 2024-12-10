@@ -87,7 +87,7 @@ public class Day10
         Console.WriteLine($"{nameof(Part1)} actual result: {actualOutput}");
     }
 
-    [TestCase(TestInput2, "")]
+    [TestCase(TestInput2, "81")]
     public void Part2(string input, string expectedOutput)
     {
         var testOutput = Solution2(input);
@@ -120,36 +120,77 @@ public class Day10
         }
 
         return total.ToString();
+        
+        static HashSet<(int, int)> CalculateScore(char[][] map, int i, int j)
+        { 
+            var currentLevel = map[i][j];
+            if (currentLevel == '9') return [(i, j)];
+        
+            var total = new HashSet<(int, int)>();
+            foreach (var coord in Coords.Select(c => (c.Item1 + i, c.Item2 + j)))
+            {
+                if (coord.Item1 < 0 || coord.Item2 < 0 || coord.Item1 >= map.Length || coord.Item2 >= map[0].Length)
+                {
+                    continue;
+                }
+
+                if (map[coord.Item1][coord.Item2] == currentLevel + 1)
+                {
+                    var result = CalculateScore(map, coord.Item1, coord.Item2);
+                    total = total.Union(result).ToHashSet();
+                }
+            }
+
+            return total;
+        }
     }
 
     private static List<(int, int)> Coords = new() { (1, 0), (0, 1), (0, -1), (-1, 0) };
-
     
-    private static HashSet<(int, int)> CalculateScore(char[][] map, int i, int j)
-    { 
-        var currentLevel = map[i][j];
-        if (currentLevel == '9') return [(i, j)];
-        
-        var total = new HashSet<(int, int)>();
-        foreach (var coord in Coords.Select(c => (c.Item1 + i, c.Item2 + j)))
-        {
-            if (coord.Item1 < 0 || coord.Item2 < 0 || coord.Item1 >= map.Length || coord.Item2 >= map[0].Length)
-            {
-                continue;
-            }
-
-            if (map[coord.Item1][coord.Item2] == currentLevel + 1)
-            {
-                var result = CalculateScore(map, coord.Item1, coord.Item2);
-                total = total.Union(result).ToHashSet();
-            }
-        }
-
-        return total;
-    }
 
     private static string Solution2(string input)
     {
-        return "";
+        var map = input
+            .Split("\n")
+            .Select(line => line.Trim())
+            .Select(line => line.ToCharArray())
+            .ToArray();
+
+        var total = 0;
+        for (int i = 0; i < map.Length; i++)
+        {
+            for (int j = 0; j < map[0].Length; j++)
+            {
+                if (map[i][j] == '0')
+                {
+                    total += CalculateScore(map, i, j).Count;
+                }
+            }
+        }
+
+        return total.ToString();
+        
+        static List<(int, int)> CalculateScore(char[][] map, int i, int j)
+        { 
+            var currentLevel = map[i][j];
+            if (currentLevel == '9') return [(i, j)];
+        
+            var total = new List<(int, int)>();
+            foreach (var coord in Coords.Select(c => (c.Item1 + i, c.Item2 + j)))
+            {
+                if (coord.Item1 < 0 || coord.Item2 < 0 || coord.Item1 >= map.Length || coord.Item2 >= map[0].Length)
+                {
+                    continue;
+                }
+
+                if (map[coord.Item1][coord.Item2] == currentLevel + 1)
+                {
+                    var result = CalculateScore(map, coord.Item1, coord.Item2);
+                    total.AddRange(result);
+                }
+            }
+
+            return total;
+        }
     }
 }
