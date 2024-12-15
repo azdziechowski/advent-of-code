@@ -1,8 +1,12 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace AdventOfCode._2024;
 
 [TestFixture]
 public class Day11
 {
+    private static Dictionary<(string, int), long> _memo = new();
+
     private const string TestInput =
         """
         125 17
@@ -25,29 +29,38 @@ public class Day11
         Console.WriteLine($"{nameof(Part1)} actual result: {actualOutput}");
     }
 
-    [TestCase("", "")]
+    [TestCase(TestInput, "")]
     public void Part2(string input, string expectedOutput)
     {
-        // No test cases given
-        
+        // no test input available
+
         var actualOutput = Solution2(Input);
         Console.WriteLine($"{nameof(Part2)} actual result: {actualOutput}");
     }
 
-    private static readonly Dictionary<string, List<string>> _memo = new();
-
     private static string Solution1(string input)
     {
-        var stones = input.Trim().Split(' ').Select(x => x.Trim()).ToList();
+        var stones = input.Trim()
+            .Split(' ')
+            .Select(x => x.Trim())
+            .ToList();
+        
+        Console.WriteLine(string.Join(", ", stones));
         for (var i = 0; i < 25; i++)
         {
-            stones = GetNext(stones);
-        }
-
+            var newStones = new List<string>();    
+            foreach (var stone in stones)
+            {
+                newStones.AddRange(Blink(stone));
+            }
+            stones = newStones;
+            Console.WriteLine(string.Join(", ", stones));
+        }    
+        
         return stones.Count.ToString();
     }
 
-    private static List<string> GetNext(List<string> stones)
+    private static List<string> Blink(string stone)
     {
         // If the stone is engraved with the number 0, it is replaced by a stone engraved with the number 1.
         // If the stone is engraved with a number that has an even number of digits, it is replaced by two stones.
@@ -55,33 +68,50 @@ public class Day11
         //     and the right half of the digits are engraved on the new right stone.
         //     (The new numbers don't keep extra leading zeroes: 1000 would become stones 10 and 0.)
         // If none of the other rules apply, the stone is replaced by a new stone; the old stone's number multiplied by 2024 is engraved on the new stone.
-
-        var results = new List<string>();
-        foreach (var stone in stones)
+        return stone switch
         {
-            if (_memo.TryGetValue(stone, out var next))
-            {
-                results.AddRange(next);
-                continue;
-            }
-            
-            var result = stone switch
-            {
-                "0" => new List<string> { "1" },
-                _ when stone.Length % 2 == 0 => new List<string>
-                    { stone.Substring(0, stone.Length / 2), long.Parse(stone.Substring(stone.Length / 2)).ToString() },
-                _ => new List<string> { (long.Parse(stone) * 2024).ToString() }
-            };
-
-            _memo.Add(stone, result);
-            results.AddRange(result);
-        }
-        
-        return results;
+            "0" => ["1"],
+            _ when stone.Length % 2 == 0 => [stone[..(stone.Length / 2)], long.Parse(stone[(stone.Length / 2)..]).ToString()],
+            _ => [(long.Parse(stone) * 2024).ToString()]
+        };
     }
 
     private static string Solution2(string input)
     {
-        return "";
+        var stones = input.Trim()
+            .Split(' ')
+            .Select(x => x.Trim())
+            .ToList();
+
+        long total = 0;
+        foreach (var stone in stones)
+        {
+            total += GetCount(stone, 75);
+        }
+
+        return total.ToString();
+
+    }
+
+    private static long GetCount(string stone, int iterations)
+    {
+        if (iterations == 0)
+        {
+            return 1;
+        }
+        
+        if(_memo.TryGetValue((stone, iterations), out var result))
+            return result;
+
+        long total = 0;
+        var next = Blink(stone);
+        foreach (var n in next.GroupBy(n => n))
+        {
+            total += n.ToList().Count * GetCount(n.Key, iterations - 1);
+        }
+
+        _memo.Add((stone, iterations), total);
+        
+        return total;
     }
 }
